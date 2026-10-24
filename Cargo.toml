@@ -1,0 +1,17 @@
+[package]
+name = "bend-build"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Compile Bend programs into a Rust crate from build.rs"
+repository = "https://github.com/connerohnesorge/bend-build"
+readme = "README.md"
+keywords = ["bend", "build", "ffi"]
+categories = ["development-tools::build-utils", "external-ffi-bindings"]
+
+[dependencies]
+cc = "1.2"
+
+[workspace]
+members = ["examples/proven"]
+resolver = "2"
