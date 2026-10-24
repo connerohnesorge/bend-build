@@ -1,0 +1,9 @@
+[package]
+name = "proven"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Bend programs with checked laws, called from Rust"
+
+[build-dependencies]
+bend-build = { path = "../.." }

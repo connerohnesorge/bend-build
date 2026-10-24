@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  bend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: clang
+        run: sudo apt-get update && sudo apt-get install -y clang
+      - name: bend
+        run: curl -fsSL https://bend-lang.com/install.sh | sh
+        env:
+          BEND_NO_TELEMETRY: "1"
+      - name: path
+        run: echo "$HOME/.bend/bin" >> "$GITHUB_PATH"
+      - name: test and examples
+        run: |
+          cargo test --workspace
+          cargo run -p proven --example arith --quiet
+          cargo run -p proven --example fold --quiet
+          cargo run -p proven --example par_sum --quiet
+        env:
+          BEND_NO_TELEMETRY: "1"
